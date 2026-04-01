@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #333;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #ff0066;
+      animation: zoom 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes zoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+
+    p {
+      max-width: 500px;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 18px;
+      border: 2px solid #ff66a6;
+      border-radius: 10px;
+      outline: none;
+      width: 250px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      background-color: #ff3399;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #e60073;
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 60px;
+      height: 80px;
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1.5px;
+      height: 60px;
+      background: #333;
+    }
+
+    .balloon:nth-child(1) { left: 10%; background-color: blue; animation-delay: 0s; }
+    .balloon:nth-child(2) { left: 30%; background-color: orange; animation-delay: 2s; }
+    .balloon:nth-child(3) { left: 50%; background-color: green; animation-delay: 4s; }
+    .balloon:nth-child(4) { left: 70%; background-color: violet; animation-delay: 1s; }
+    .balloon:nth-child(5) { left: 90%; background-color: red; animation-delay: 3s; }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-120vh); opacity: 0; }
+    }
+
+    .heart {
+      position: fixed;
+      font-size: 80px;
+      transform: scale(1);
+      animation: beat 1s infinite;
+    }
+
+    .heart.left { left: 80px; top: 40%; }
+    .heart.right { right: 80px; top: 40%; }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    .small-heart {
+      position: absolute;
+      color: pink;
+      animation: floatHearts 5s linear infinite;
+      font-size: 20px;
+    }
+
+    @keyframes floatHearts {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+    }
+
+    /* Countdown */
+    #countdown {
+      font-size: 24px;
+      margin: 20px 0;
+      color: red;/*#cc0066;*/
+    }
+
+    #personal-wish {
+      background: #fff5f8;
+      padding: 15px 25px;
+      border-radius: 10px;
+      max-width: 600px;
+      color: #cc0066;
+      font-size: 18px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .popup-text {
+      position: absolute;
+      font-size: 14px;
+      color: red;
+      font-weight: bold;
+      animation: floatText 3s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatText {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-200px) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body onclick="playMusic()">
+
+  <!-- 🎈 Balloons -->
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+
+  <!-- ❤️ 3D Hearts -->
+  <div class="heart left">❤️</div>
+  <div class="heart right">❤️</div>
+
+  <!-- 💕 Small Hearts Script -->
+  <script>
+    function createSmallHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'small-heart';
+      heart.innerText = ['💋 ,🫂'];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = '100vh';
+      heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createSmallHeart, 300);
+  </script>
+  <!-- 💥 Surprise Popups -->
+  <script>
+    const messages = [
+      "My LOVE💘!",
+      "You’re the Best!",
+      "Smile Please 😊",
+      "My HARIKA💘 ",
+      "One & Only ME💖",
+      "Big Hug 🤗",
+      "Keep Shining 🌟",
+      "My QUEEN💘"
+    ];
+
+    function createPopup() {
+      const popup = document.createElement("div");
+      popup.className = "popup-text";
+      popup.innerText = messages[Math.floor(Math.random() * messages.length)];
+      popup.style.left = Math.random() * 90 + "vw";
+      popup.style.top = "90vh";
+      document.body.appendChild(popup);
+      setTimeout(() => popup.remove(), 5000);
+    }
+
+    setInterval(createPopup, 1500);
+  </script>
+
+  <div class="container">
+    <h1>🎉 Welcome to My Birthday Page 🎉</h1>
+
+    <!-- Countdown Display -->
+    <div id="countdown">⏳ Loading countdown...</div>
+
+    <!-- Personal Message -->
+    <div id="personal-wish">
+      <p><i>Before Submitting this, please don't feel bad if I did anything wrong. I just want to show how important you are in my life and I want to see a smile on your face</i><bold>🫂😊</bold> That's it!!</i><bold>😊😘</bold></p>
+    </div>
+
+    <!-- Name Input -->
+    <form id="nameForm">
+      <input type="text" id="userName" placeholder="Enter your name" maxlength="20" pattern="[A-Za-z ]+" required>
+      <br>
+      <button type="submit">Submit</button>
+    </form>
+    <p style="color: #444; font-size: 16px; margin-top: 20px;">🔊 Click anywhere to play the birthday music!</p>
+
+    <div class="personal-wishes" style="color: darkmagenta;">
+      💌HARIKA, you are an amazing soul! May this birthday bring you endless joy, love, and unforgettable memories.💜💜
+    </div>   
+
+  </div>
+
+  <!-- Music -->
+  <audio id="bg-music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    document.getElementById("nameForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("userName").value.trim().toLowerCase();
+      const allowedNames = ["sunmoon", "Harika","harika", "hari", "my harika", "hasika", "Hasika", "harika bellamkonda"]; // Add names here
+      if (allowedNames.includes(name)) {
+        window.location.href = `black.html?name=${encodeURIComponent(name)}`;
+      } else {
+        alert("Sorry! This page is only for someone special 💘");
+      }
+    });
+
+
+    function playMusic() {
+      const music = document.getElementById("bg-music");
+      music.play();
+    }
+
+    // Countdown Script
+    const countdownEl = document.getElementById("countdown");
+    const birthday = new Date("october 7, 2026 00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = birthday - now;
+
+      if (distance <= 0) {
+        countdownEl.innerHTML = "🎂 Happy Birthday My Harika💘! 🎂";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownEl.innerHTML = `⏳ Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s until harika Birthday!`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // Call immediately on load
+  </script>
+</body>
+</html>

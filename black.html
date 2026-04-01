@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BELLAMKONDA HARIKA</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: white;
+      overflow-x: hidden;
+      height: 100%;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+   h1 {
+      font-size: 36px;
+      color: #ff0066;
+      animation: zoom 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes zoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+
+    h4, p {
+      color: #00FFEF;
+      font-size: 18px;
+    }
+
+    h3 {
+      color: violet;
+      text-align: center;
+    }
+
+    .zoom-quote {
+      animation: zoomInOut 4s infinite;
+      font-size: 22px;
+      color: #FF69B4;
+      text-shadow: 0 0 10px #fff;
+    }
+
+    @keyframes zoomInOut {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .balloon {
+      width: 60px;
+      height: 80px;
+      border-radius: 50% 50% 45% 45%;
+      position: fixed;
+      bottom: -100px;
+      animation: floatUp 10s linear infinite, swing 3s ease-in-out infinite alternate;
+      z-index: 1;
+      opacity: 0.95;
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      width: 2px;
+      height: 50px;
+      background: #ccc;
+      transform: translateX(-50%);
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-130vh); opacity: 0; }
+    }
+
+    @keyframes swing {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(20px); }
+    }
+
+    .sparkle {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: gold;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #fff;
+      animation: sparkleAnim 1.5s infinite ease-in-out, moveSparkle 8s infinite alternate linear;
+      z-index: 0;
+    }
+
+    @keyframes sparkleAnim {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.6; }
+    }
+
+    @keyframes moveSparkle {
+      0% { transform: translate(0px, 0px); }
+      100% { transform: translate(60px, 60px); }
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      opacity: 0.8;
+      top: -10px;
+      animation: fall 5s infinite linear;
+      z-index: 3;
+      border-radius: 2px;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    .heartbeat-heart {
+      position: fixed;
+      font-size: 90px;
+      color: hotpink;
+      animation: heartbeat 1.5s infinite;
+      z-index: 4;
+      bottom: 80px;
+      right: 80px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.4); }
+    }
+
+    .floating-heart {
+      position: fixed;
+      font-size: 60px;
+      color: deeppink;
+      bottom: 30px;
+      right: 30px;
+      animation: floatHeart 4s ease-in-out infinite;
+      z-index: 4;
+    }
+
+    @keyframes floatHeart {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    .small-heart {
+      position: fixed;
+      font-size: 20px;
+      color: pink;
+      animation: smallHeartFloat 4s linear forwards;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    @keyframes smallHeartFloat {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-150px) scale(0.5); opacity: 0; }
+    }
+
+    @keyframes fadeAndRise {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2); opacity: 0; transform: translateY(-50px); }
+    }
+  </style>
+</head>
+<body>
+
+<p id="clickText" style="text-align:center; color:orange; font-size:18px;">
+  Click anywhere to play My music 🎵
+</p>
+
+<audio id="bgMusic" loop>
+  <source src="harika.mp3" type="audio/mpeg">
+</audio>
+
+<canvas id="fireworksCanvas" style="position:fixed; top:0; left:0; z-index:5; pointer-events:none;"></canvas>
+
+<div class="heartbeat-heart">💗</div>
+<div class="floating-heart">💜</div>
+
+<div class="content">
+  <h1><i>HARIKA BELLAMKONDA</i><bold>💙🩷❤!!</bold></h1>
+
+  <h4>
+    <p>Firstly, Happy Birthday To Me!!🌺🎉🎊🪄🎀</p>
+    <p><i style="color:darkviolet;">H </i>- To My Special Day I Want To tell you how great you are 🌺🎉🎊🪄🎀</p>
+    <p><i style="color:darkviolet;">A </i>- I’ll always be the one to send you the first message,but I don’t want just your reply—I want your presence 🌚🌝</p>
+    <p><i style="color:darkviolet;">R </i>- I reply in seconds because you matter to me, but I’ll never ask you to reply fast ❤✨</p>
+    <p><i style="color:darkviolet;">I </i>- You’re the most important person to me—more than anything and anyone.🙈😘</p>
+    <p><i style="color:darkviolet;">K </i>- I care for you like your mom would.😚🦚
+    <p><i style="color:darkviolet;">A </i>- I can handle your anger and still stay.🫂😊</p>
+    <p><i style="color:darkviolet;">H </i>- I’ll pray for you anytime, any day, wherever I am.🩵</p>
+    <p><i style="color:darkviolet;">A </i>- I remember the little things, even when you forget.🧡</p>
+    <p><i style="color:darkviolet;">R </i>- I’ll defend you even when you’re not around.❣🪄🎀</p>
+    <p><i style="color:darkviolet;">I </i>- I choose you every single day, even when it’s hard🙇🏻‍♀✨</p>
+    <p><i style="color:darkviolet;">K </i>- You mean the world to me🌝🌚..You're one of a kind, and I’m so lucky to have you. 🫵🫶💖</p>
+    <p><i style="color:darkviolet">A </i>- I respect Your busy time but remember your Cute Girl is Waiting for You👀🫵😘🌝🤌</p>
+    <p style="text-align: center; font-weight: bold; font-size: 1\20px; color: yellow; text-shadow: 0 0 5px red, 0 0 10px pink;">
+      - EveryThing Is Fine💙When You Are Mine🩷❤💜🤍💓♥️
+    </p> 
+    <p>And, Finally From My Heart🫀💋🎉🎊🪄🎀:</p>
+    <h3 class="zoom-quote">ఉరిమెంత కోపం మీకుంటే... <br> మేఘం లా కరిగి చినుకై జారేంత ప్రేమ నాది🙈😘😍</h3>
+    <p>Enjoy My special day!💙🩷❤💜🤍💓♥️</p>
+    <p style="text-align: right; font-weight: bold; font-size: 30px; color: deepskyblue; text-shadow: 0 0 5px red, 0 0 10px pink;">
+      - Yours Doll 💙🩷❤💜🤍💓♥️
+    <p style="text-align: center; font-weight: bold; font-size: 20px; color: ghostwhite; text-shadow: 0 0 5px red, 0 0 10px pink;"><i>
+      - Can I Be Your Doll Forever🫵🤌??
+    </i></p> 
+    </p> 
+  </h4>
+</div>
+
+<script>
+  const balloonColors = ['#FF0000', '#00FF00', '#FFD700', '#3399FF'];
+  for (let i = 0; i < 40; i++) {
+    const balloon = document.createElement('div');
+    balloon.classList.add('balloon');
+    balloon.style.left = Math.random() * 100 + 'vw';
+    balloon.style.animationDuration = (6 + Math.random() * 4) + 's';
+    balloon.style.animationDelay = Math.random() * 5 + 's';
+    balloon.style.backgroundColor = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+    document.body.appendChild(balloon);
+  }
+
+  for (let i = 0; i < 80; i++) {
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    sparkle.style.top = Math.random() * 100 + 'vh';
+    sparkle.style.left = Math.random() * 100 + 'vw';
+    sparkle.style.animationDelay = Math.random() * 3 + 's';
+    document.body.appendChild(sparkle);
+  }
+
+  const confettiColors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF69B4', '#FFA500'];
+  for (let i = 0; i < 60; i++) {
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.animationDuration = (3 + Math.random() * 3) + 's';
+    confetti.style.animationDelay = Math.random() * 5 + 's';
+    confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+    document.body.appendChild(confetti);
+  }
+
+  // Fireworks + sparkles
+  window.addEventListener('click', (event) => {
+    const audio = document.getElementById('bgMusic');
+    const clickText = document.getElementById('clickText');
+    if (audio && audio.paused) {
+      audio.play().catch(err => console.log("Autoplay blocked:", err));
+    }
+    if (clickText) clickText.style.display = 'none';
+
+    const canvas = document.getElementById('fireworksCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    for (let i = 0; i < 100; i++) {
+      particles.push({
+        x: event.clientX,
+        y: event.clientY,
+        radius: Math.random() * 2 + 1,
+        color: `hsl(${Math.random() * 360}, 100%, 60%)`,
+        vx: (Math.random() - 0.5) * 6,
+        vy: (Math.random() - 0.5) * 6,
+        life: 100
+      });
+    }
+
+    function animateFireworks() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, index) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life--;
+        if (p.life <= 0) particles.splice(index, 1);
+      });
+      if (particles.length > 0) requestAnimationFrame(animateFireworks);
+    }
+    animateFireworks();
+
+    // Sparkle + name
+    const sparkleText = document.createElement('div');
+    sparkleText.textContent = 'HARIKA💘';
+    sparkleText.style.position = 'fixed';
+    sparkleText.style.left = `${event.clientX}px`;
+    sparkleText.style.top = `${event.clientY}px`;
+    sparkleText.style.color = 'red';
+    sparkleText.style.fontSize = '15px';
+    sparkleText.style.fontWeight = 'bold';
+    sparkleText.style.pointerEvents = 'none';
+    sparkleText.style.animation = 'fadeAndRise 2.5s ease-out forwards';
+    sparkleText.style.zIndex = 1000;
+    document.body.appendChild(sparkleText);
+
+    setTimeout(() => {
+      sparkleText.remove();
+    }, 300);
+  });
+
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.classList.add('small-heart');
+    heart.textContent = '🤍';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.bottom = '0';
+    document.body.appendChild(heart);
+    setTimeout(() => {
+      heart.remove();
+    }, 4000);
+  }, 300);
+</script>
+
+</body>
+</html>
+
+
