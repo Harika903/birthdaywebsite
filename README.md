@@ -26,6 +26,7 @@ Download or clone the project
 Open the file:
 
 index.html
+
 Enter your name and enjoy the birthday animation 🎉
 # 🎯 Outcome
 
